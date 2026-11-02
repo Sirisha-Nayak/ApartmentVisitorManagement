@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Gate Access Portal | Apartment Visitor Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="login-card-header">
+      <img src="assets/images/logo.svg" alt="Greenwood Crest" class="login-logo">
+      <h2>Greenwood Residences</h2>
+      <p>Security Gate & Visitor Command Portal</p>
+    </div>
+
+    <div class="login-card-body">
+      <!-- Mode Toggle Tabs -->
+      <div class="login-tabs">
+        <button type="button" class="login-tab-btn" id="tab-pin">Guard PIN Access</button>
+        <button type="button" class="login-tab-btn active" id="tab-password">Supervisor Login</button>
+      </div>
+
+      <form id="login-form">
+        <!-- Password Mode -->
+        <div id="group-password-mode">
+          <div class="form-group">
+            <label for="login-username">Staff Username</label>
+            <input type="text" class="form-control" id="login-username" placeholder="e.g. admin or guard" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" class="form-control" id="login-password" placeholder="••••••••••••" autocomplete="current-password">
+          </div>
+        </div>
+
+        <!-- PIN Mode (Hidden by default) -->
+        <div id="group-pin-mode" style="display: none;">
+          <div class="form-group">
+            <label for="login-pin">4-Digit Security PIN</label>
+            <input type="password" class="form-control" id="login-pin" placeholder="Enter PIN (e.g. 5678)" maxlength="6" style="letter-spacing: 4px; font-size: 1.2rem; text-align: center;">
+            <div class="form-hint" style="text-align: center;">Authorized gate personnel quick-access PIN</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold" id="btn-login-submit" style="width: 100%; margin-top: 10px; padding: 12px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+          Sign In to Security Gate
+        </button>
+      </form>
+
+      <!-- Quick Demo Credentials Box -->
+      <div class="demo-credentials-box">
+        <strong>⚡ Quick Demo Credentials:</strong>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="fillDemoCredentials('guard-pin')">
+            Guard PIN (5678)
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="fillDemoCredentials('admin-user')">
+            Admin (admin / password123)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

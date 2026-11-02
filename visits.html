@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visits Log & Check-Out | Apartment Visitor Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/images/logo.svg" alt="Apartment Crest" class="brand-logo-img">
+        <div class="brand-text">
+          <h1>GREENWOOD</h1>
+          <span class="brand-tagline">Residences & Security</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section-title">Main Portal</div>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="index.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="residents.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Residents
+          </a>
+        </li>
+        <li>
+          <a href="visitors.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Visitors Directory
+          </a>
+        </li>
+        <li>
+          <a href="visits.html" class="nav-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Visits Log
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="guard-profile">
+          <div class="guard-avatar" id="guard-avatar">SG</div>
+          <div class="guard-info">
+            <div class="guard-name" id="guard-name">Duty Security Guard</div>
+            <div class="guard-badge" id="guard-badge">
+              <span class="status-dot"></span> Gate Officer • Active
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="page-breadcrumb">
+            <span>Portal</span>
+            <span>/</span>
+            <span class="current">Security Visits Log</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="live-datetime" id="topbar-clock">Loading live time...</div>
+          <div class="db-status-pill" id="db-status-pill">
+            <span class="status-dot"></span> MySQL Connected
+          </div>
+          <button class="btn-logout" id="btn-logout" title="Sign Out">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Body Container -->
+      <div class="page-container">
+        <!-- Card Container -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                Visits & Security Logs
+              </h2>
+              <p>Real-time gate check-ins, check-outs, and timestamped security audit records</p>
+            </div>
+            <div class="card-actions">
+              <span class="badge-status" id="visits-count" style="background:#ECFDF5; color:var(--color-emerald-primary); border:1px solid var(--color-emerald-soft);">
+                0 Visits
+              </span>
+              <button class="btn btn-secondary btn-sm" id="btn-export-csv" title="Export Current Log to CSV">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Export CSV
+              </button>
+              <button class="btn btn-gold" id="btn-open-record-visit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                Record Visit Entry
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Filter & Search Toolbar -->
+            <div class="toolbar-bar">
+              <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="search-visits" placeholder="Search by visitor, flat no, resident name, or vehicle...">
+              </div>
+
+              <div class="filter-group">
+                <select id="filter-resident" class="select-filter" title="Filter by Host Resident">
+                  <option value="">All Residents / Flats</option>
+                </select>
+
+                <select id="filter-visitor" class="select-filter" title="Filter by Visitor">
+                  <option value="">All Visitors</option>
+                </select>
+
+                <select id="filter-status" class="select-filter" title="Filter by Status">
+                  <option value="All">All Statuses</option>
+                  <option value="Inside">Inside Premise</option>
+                  <option value="Completed">Completed / Exited</option>
+                </select>
+
+                <input type="date" id="filter-date" class="date-filter" title="Filter by Entry Date">
+
+                <button class="btn btn-secondary btn-sm" id="btn-clear-filters" title="Reset All Filters">
+                  Reset Filters
+                </button>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Visit #</th>
+                    <th>Visitor Information</th>
+                    <th>Host Resident & Flat</th>
+                    <th>Vehicle</th>
+                    <th>Purpose</th>
+                    <th>Entry Time</th>
+                    <th>Exit Time</th>
+                    <th>Status</th>
+                    <th>Check-Out</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="visits-tbody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="visits-empty" style="display: none;">
+              <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><circle cx="12" cy="14" r="2"></circle></svg>
+              </div>
+              <h3>No Visit Records Match Criteria</h3>
+              <p>There are no visitor entries matching your search or filter query. Adjust the filters or record a new visit.</p>
+              <button class="btn btn-gold" onclick="openModal('modal-add-visit')">Record New Visit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: Record New Visit -->
+  <div class="modal-overlay" id="modal-add-visit">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Record Visitor Entry
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="form-add-visit">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="add-visit-resident">Host Resident & Flat <span class="required">*</span></label>
+            <select class="form-control" id="add-visit-resident" name="resident_id" required>
+              <option value="">Loading residents from MySQL...</option>
+            </select>
+            <div class="form-hint">Select the flat owner or resident receiving the visitor.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="add-visit-visitor">Visitor <span class="required">*</span></label>
+            <select class="form-control" id="add-visit-visitor" name="visitor_id" required>
+              <option value="">Loading visitors from MySQL...</option>
+            </select>
+            <div class="form-hint">Visitor not registered? <a href="visitors.html" target="_blank" style="color:var(--color-emerald-primary); font-weight:600;">Open Visitors Directory</a> to add them.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="add-visit-entry-time">Entry Time</label>
+            <input type="datetime-local" class="form-control" id="add-visit-entry-time" name="entry_time">
+            <div class="form-hint">Defaults to current date & time if unchanged.</div>
+          </div>
+
+          <div class="form-group">
+            <label>Initial Security Status</label>
+            <input type="text" class="form-control" value="Inside (Active On Premises)" readonly style="background:#F9FAFB; color:#047857; font-weight:600;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-gold">Confirm Entry (Inside)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Edit Visit -->
+  <div class="modal-overlay" id="modal-edit-visit">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          Edit Visit Record
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="form-edit-visit">
+        <input type="hidden" id="edit-visit-id" name="visit_id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-visit-resident">Host Resident & Flat <span class="required">*</span></label>
+            <select class="form-control" id="edit-visit-resident" name="resident_id" required>
+              <!-- Filled via JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-visit-visitor">Visitor <span class="required">*</span></label>
+            <select class="form-control" id="edit-visit-visitor" name="visitor_id" required>
+              <!-- Filled via JS -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-visit-entry-time">Entry Time</label>
+              <input type="datetime-local" class="form-control" id="edit-visit-entry-time" name="entry_time">
+            </div>
+            <div class="form-group">
+              <label for="edit-visit-exit-time">Exit Time</label>
+              <input type="datetime-local" class="form-control" id="edit-visit-exit-time" name="exit_time">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-visit-status">Visit Status</label>
+            <select class="form-control" id="edit-visit-status" name="status">
+              <option value="Inside">Inside (Active)</option>
+              <option value="Completed">Completed (Checked Out)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-gold">Update Visit Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Gate Pass Badge & Printable Slip -->
+  <div class="modal-overlay" id="modal-gate-pass">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Security Gate Entry Pass
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="gate-pass-container" id="printable-gate-pass">
+          <div class="gate-pass-header">
+            <div class="gate-pass-brand">
+              <img src="assets/images/logo.svg" alt="Greenwood Crest">
+              <div class="gate-pass-title">
+                <h3>GREENWOOD RESIDENCES</h3>
+                <span>Authorized Security Gate Pass</span>
+              </div>
+            </div>
+            <div class="gate-pass-badge-id" id="pass-log-id">PASS #000</div>
+          </div>
+
+          <div class="gate-pass-grid">
+            <div class="pass-field">
+              <label>Visitor Name</label>
+              <div class="value" id="pass-visitor-name">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Visitor Phone</label>
+              <div class="value" id="pass-visitor-phone">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Visiting Host & Flat</label>
+              <div class="value" id="pass-host-flat">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Vehicle Number</label>
+              <div class="value" id="pass-vehicle-no">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Purpose of Visit</label>
+              <div class="value" id="pass-purpose">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Entry Timestamp</label>
+              <div class="value" id="pass-entry-time">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Exit Timestamp</label>
+              <div class="value" id="pass-exit-time">—</div>
+            </div>
+            <div class="pass-field">
+              <label>Current Status</label>
+              <div class="value" id="pass-status">—</div>
+            </div>
+          </div>
+
+          <div class="gate-pass-footer">
+            <div>Verification: Gate Security Desk • Greenwood Residences System</div>
+            <div class="gate-stamp">SECURITY VERIFIED</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-gold" onclick="window.print()">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print Gate Pass
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/visits.js"></script>
+</body>
+</html>

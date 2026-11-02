@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visitors Directory | Apartment Visitor Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/images/logo.svg" alt="Apartment Crest" class="brand-logo-img">
+        <div class="brand-text">
+          <h1>GREENWOOD</h1>
+          <span class="brand-tagline">Residences & Security</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section-title">Main Portal</div>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="index.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="residents.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Residents
+          </a>
+        </li>
+        <li>
+          <a href="visitors.html" class="nav-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Visitors Directory
+          </a>
+        </li>
+        <li>
+          <a href="visits.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Visits Log
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="guard-profile">
+          <div class="guard-avatar" id="guard-avatar">SG</div>
+          <div class="guard-info">
+            <div class="guard-name" id="guard-name">Duty Security Guard</div>
+            <div class="guard-badge" id="guard-badge">
+              <span class="status-dot"></span> Gate Officer • Active
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="page-breadcrumb">
+            <span>Portal</span>
+            <span>/</span>
+            <span class="current">Visitors Directory</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="live-datetime" id="topbar-clock">Loading live time...</div>
+          <div class="db-status-pill" id="db-status-pill">
+            <span class="status-dot"></span> MySQL Connected
+          </div>
+          <button class="btn-logout" id="btn-logout" title="Sign Out">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Body Container -->
+      <div class="page-container">
+        <!-- Card Container -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Registered Visitors Directory
+              </h2>
+              <p>Registry of authorized delivery agents, service contractors, and personal guests</p>
+            </div>
+            <div class="card-actions">
+              <span class="badge-status" id="visitors-count" style="background:#ECFDF5; color:var(--color-emerald-primary); border:1px solid var(--color-emerald-soft);">
+                0 Visitors
+              </span>
+              <button class="btn btn-primary" onclick="openModal('modal-add-visitor')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                Register Visitor
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Toolbar for Search and Sorting -->
+            <div class="toolbar-bar">
+              <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="search-visitors" placeholder="Search by visitor name, phone, vehicle, or purpose...">
+              </div>
+
+              <div class="filter-group">
+                <label for="sort-visitors" style="font-size:0.82rem; font-weight:600; color:var(--color-text-muted);">Sort By:</label>
+                <select id="sort-visitors" class="select-filter">
+                  <option value="name">Name (A-Z)</option>
+                  <option value="visitor_id">Visitor ID</option>
+                  <option value="purpose">Purpose</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Visitor Name</th>
+                    <th>Phone</th>
+                    <th>Vehicle Number</th>
+                    <th>Purpose</th>
+                    <th>Visits Total</th>
+                    <th>Presence</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="visitors-tbody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="visitors-empty" style="display: none;">
+              <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+              <h3>No Visitors Found</h3>
+              <p>No visitor records match your search or the directory is empty. Click below to register a visitor.</p>
+              <button class="btn btn-primary" onclick="openModal('modal-add-visitor')">Register New Visitor</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: Register Visitor -->
+  <div class="modal-overlay" id="modal-add-visitor">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+          Register New Visitor
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="form-add-visitor">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="add-vis-name">Visitor Full Name <span class="required">*</span></label>
+            <input type="text" class="form-control" id="add-vis-name" name="name" placeholder="e.g. Ramesh Patel" required maxlength="100">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-vis-phone">Phone Number</label>
+              <input type="text" class="form-control" id="add-vis-phone" name="phone" placeholder="e.g. 9123456701" maxlength="15">
+            </div>
+            <div class="form-group">
+              <label for="add-vis-vehicle">Vehicle Number</label>
+              <input type="text" class="form-control" id="add-vis-vehicle" name="vehicle_no" placeholder="e.g. KA-01-AB-1234" maxlength="30">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="add-vis-purpose">Visit Purpose</label>
+            <input type="text" class="form-control" id="add-vis-purpose" name="purpose" placeholder="e.g. Amazon Delivery / AC Maintenance / Personal Guest" maxlength="150">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Directory</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Edit Visitor -->
+  <div class="modal-overlay" id="modal-edit-visitor">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          Edit Visitor Information
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="form-edit-visitor">
+        <input type="hidden" id="edit-visitor-id" name="visitor_id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-visitor-name">Visitor Full Name <span class="required">*</span></label>
+            <input type="text" class="form-control" id="edit-visitor-name" name="name" required maxlength="100">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-visitor-phone">Phone Number</label>
+              <input type="text" class="form-control" id="edit-visitor-phone" name="phone" maxlength="15">
+            </div>
+            <div class="form-group">
+              <label for="edit-visitor-vehicle">Vehicle Number</label>
+              <input type="text" class="form-control" id="edit-visitor-vehicle" name="vehicle_no" maxlength="30">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-visitor-purpose">Visit Purpose</label>
+            <input type="text" class="form-control" id="edit-visitor-purpose" name="purpose" maxlength="150">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-gold">Update Visitor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Visitor Visits History -->
+  <div class="modal-overlay" id="modal-visitor-visits">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span id="visitor-visits-modal-title">Visitor Entry History</span>
+        </h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 16px;">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Visit #</th>
+                <th>Host Resident</th>
+                <th>Flat No</th>
+                <th>Vehicle</th>
+                <th>Purpose</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="visitor-visits-table-body">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="visitor-visits-empty" style="display:none; text-align:center; padding:30px; color:var(--color-text-muted);">
+          No visit history logged for this visitor yet.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/visitors.js"></script>
+</body>
+</html>

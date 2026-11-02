@@ -1,0 +1,27 @@
+{
+  "name": "apartment-visitor-management",
+  "version": "1.0.0",
+  "description": "Professional Apartment Visitor Management System with Node.js, Express, MySQL, and Vanilla JS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node seed.js",
+    "test": "node test-system.js"
+  },
+  "keywords": [
+    "visitor-management",
+    "apartment-security",
+    "gated-community",
+    "mysql",
+    "express"
+  ],
+  "author": "Apartment Security Management Systems",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  }
+}

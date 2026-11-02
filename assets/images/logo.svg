@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D4A72C"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield Background -->
+  <path d="M24 4L7 10V22C7 32.5 14.3 42.2 24 44.5C33.7 42.2 41 32.5 41 22V10L24 4Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="1.5"/>
+  <!-- Gold Castle / Tower Gate Top -->
+  <path d="M16 28V20H20V24H22V17H26V24H28V20H32V28H16Z" fill="url(#goldGrad)"/>
+  <!-- Arch Gate -->
+  <path d="M21 28V24C21 22.3 22.3 21 24 21C25.7 21 27 22.3 27 24V28H21Z" fill="#064E3B"/>
+  <!-- Star / Sparkle of Excellence -->
+  <path d="M24 10L25.2 13.5L28.8 14.2L26 16.5L26.9 20L24 18.2L21.1 20L22 16.5L19.2 14.2L22.8 13.5L24 10Z" fill="#FEF3C7"/>
+  <!-- Shield subtle inner glow -->
+  <circle cx="24" cy="24" r="14" stroke="#D4A72C" stroke-width="0.75" stroke-dasharray="2,2" opacity="0.6"/>
+</svg>
